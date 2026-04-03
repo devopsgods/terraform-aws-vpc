@@ -18,9 +18,14 @@ resource "aws_subnet" "public" {
   cidr_block = var.public_subnet_cidrs[count.index]
   
   # Optional: Choose a specific data center (AZ)
-  availability_zone = "us-east-1a"
+  availability_zone = local.az_names[count.index]
 
-  tags = {
-    Name = "dev-public-subnet"
-  }
+  tags = merge(
+        local.common_tags,
+        var.public_subnets_tags
+        {
+            Name = ${var.project}-${var.enviornment}-public-${local.az_names[count.index]}
+        }
+        var.public_subnet_tags
+  )
 }
