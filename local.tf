@@ -23,6 +23,6 @@ vpc_final_tags = merge(
   
   
     az_names = slice(data_aws_availability_zones.available.names, 0,2)
-    public_subnet_tags
+    public_subnet_tags = var.public_subnet_tags
       
 }
