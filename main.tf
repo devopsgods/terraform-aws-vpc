@@ -41,7 +41,7 @@ resource "aws_subnet" "private" {
 
   tags = merge(
         local.common_tags,
-        var.privatec_subnet_tags,
+        var.private_subnet_tags,
         {
             Name = "${var.project}-${var.enviornment}-private-${local.az_names[count.index]}"
         },
@@ -149,7 +149,7 @@ resource "aws_route" "private" {
 }
 
 resource "aws_route" "database" {
-  route_table_id         = aws_route_table.databse.id
+  #route_table_id         = aws_route_table.databse.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.main.id
 }
