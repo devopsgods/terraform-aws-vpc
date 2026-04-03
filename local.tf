@@ -4,11 +4,19 @@ locals {
     enviornment= var.enviornment
     terraform = "true"
 }
-vpc_final_tags = merge{
+vpc_final_tags = merge(
     local.common_tags,
     {
-         Name = "${var.project}-${var.environment}"
+         Name = "${var.project}-${var.enviorment}"
     },
     var.vpc_tags
-  }
+  )
+
+  igw_final_tags = merge(
+    locals.common_tags,
+    {
+        Name = "${var.project}-${var.enviorment}"
+    }
+  ),
+  var.igw_tags
 }
