@@ -21,4 +21,3 @@ variable "igw_tags" {
     type = map
         default = {}
     }
-}
